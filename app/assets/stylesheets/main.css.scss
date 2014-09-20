@@ -10,7 +10,7 @@ body, #container {
 }
 
 h1 {
-  color: #A81B1B;
+  color: #4386DB;
   text-align: center;
   font-size: 48px;
   font-weight: 700;
@@ -83,21 +83,23 @@ position: relative;
 
 .background-color-1 {
   background: #A81B1B;
+  background: black;
+
   /*background: rgb(240,186,149);*/
 }
 
 .background-color-2 {
-  background: rgb(93, 38, 38);
+  background: #4386DB;
   /*background: rgb(38,189,207);*/
 }
 
 .background-color-3 {
-  background: #BD8354;
+  background: #01288D;
   /*background: rgb(26,115,186);*/
 }
 
 .background-color-4 {
-  background: rgb(155, 65, 65);
+  background: gray;
   /*background: rgb(177, 28, 84);*/
   /*background: rgb(177, 28, 84);*/
   /*background: rgb(38,189,207);*/
@@ -121,3 +123,5 @@ position: relative;
   background-color: #F6F6F6;
  }
 
+ .hidden{
+ }
