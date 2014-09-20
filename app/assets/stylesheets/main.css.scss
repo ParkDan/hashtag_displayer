@@ -6,21 +6,21 @@ body {
 }
 
 body, #container {
-  background-image: image-url("background2.jpg");
+  background-image: image-url("background1.png");
+  background-repeat: repeat-x;
 }
 
 h1 {
   color: #A81B1B;
   text-align: center;
-  letter-spacing: .5px;
+  font-size: 48px;
   font-weight: 700;
-  line-height: 2;
 }
-
+git
 a {
   color: orange;
   font-weight: 900;
-  font-size: 48px;
+  font-size: 72px;
   text-decoration: none;
   text-align: center;
 }
