@@ -17,16 +17,18 @@ class GramFactory
       profile_image_url = gram["user"]["profile_picture"]
       created_at = DateTime.strptime(gram["created_time"], "%s")
 
-      begin
-        Gram.create!(text: text,
-          screen_name: screen_name,
-          media_url: media_url,
-          profile_image_url: profile_image_url,
-          created_at: created_at
-          )
-      rescue
+      unless text && text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)
+        begin
+          Gram.create!(text: text,
+            screen_name: screen_name,
+            media_url: media_url,
+            profile_image_url: profile_image_url,
+            created_at: created_at
+            )
+        rescue
+        end
       end
-
+1
     end
   Gram.order(created_at: :desc).first
 

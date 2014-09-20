@@ -2,7 +2,7 @@ class TweetFactory
 
   def self.make_tweets(parsed_response)
     parsed_response["statuses"].each do |tweet|
-      
+
       text = tweet["text"]
       screen_name = tweet["user"]["screen_name"]
       created_at = tweet["created_at"]
@@ -10,8 +10,7 @@ class TweetFactory
 
       media = tweet["entities"]["media"]
       media_url = (media ? media[0]["media_url_https"] : nil)
-
-      unless text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)         
+      unless text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)
         begin
           Tweet.create!(
             text: text,
@@ -21,13 +20,12 @@ class TweetFactory
             media_url: media_url
           )
         rescue
-
         end
       end
 
     end
     Tweet.order(created_at: :desc).first
-    
+
   end
 
 end
