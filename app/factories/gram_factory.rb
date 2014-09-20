@@ -18,13 +18,13 @@ class GramFactory
       created_at = DateTime.strptime(gram["created_time"], "%s")
 
       begin
-        Gram.create!(text: text, 
+        Gram.create!(text: text,
           screen_name: screen_name,
           media_url: media_url,
           profile_image_url: profile_image_url,
           created_at: created_at
           )
-      rescue 
+      rescue
       end
 
     end
