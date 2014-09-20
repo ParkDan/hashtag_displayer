@@ -6,27 +6,28 @@ body {
 }
 
 body, #container {
+  background-image: image-url("background2.jpg");
 }
 
 h1 {
-  color: #000;
+  color: white;
   text-align: center;
   letter-spacing: .5px;
-  font-weight: 300;
+  font-weight: 600;
   line-height: 2;
 }
 
 a {
   color: orange;
-  font-weight: bolder;
-  font-size: 36px;
+  font-weight: 900;
+  font-size: 48px;
   text-decoration: none;
   text-align: center;
 }
 
 a:hover {
-  color: black;
-  font-weight: bolder;
+  color: rgb(233, 199, 136);
+  font-weight: 900;
 }
 
 a#hashtag-anchor {
