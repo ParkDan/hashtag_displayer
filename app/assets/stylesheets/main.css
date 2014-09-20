@@ -6,7 +6,6 @@ body {
 }
 
 body, #container {
-  margin-top: 107px;
 }
 
 h1 {
@@ -14,18 +13,26 @@ h1 {
   text-align: center;
   letter-spacing: .5px;
   font-weight: 300;
-  font-style: italic;
   line-height: 2;
 }
 
 a {
-  color: rgb(26,115,186);
+  color: orange;
+  font-weight: bolder;
+  font-size: 36px;
+  text-decoration: none;
+  text-align: center;
+}
+
+a:hover {
+  color: black;
+  font-weight: bolder;
 }
 
 a#hashtag-anchor {
-display: block; 
+display: block;
 position: relative;
- top: -250px; 
+ top: -250px;
  visibility: hidden;
 }
 
@@ -75,35 +82,39 @@ position: relative;
 }
 
 .background-color-1 {
-  background: #F23390;
+  background: #A81B1B;
   /*background: rgb(240,186,149);*/
 }
 
 .background-color-2 {
-  background: #F18B39;
+  background: black;
   /*background: rgb(38,189,207);*/
 }
 
 .background-color-3 {
-  background: #02AFB5;
+  background: #F18B39;
   /*background: rgb(26,115,186);*/
 }
 
 .background-color-4 {
-  background: #01288D;
+  background: gray;
   /*background: rgb(177, 28, 84);*/
   /*background: rgb(177, 28, 84);*/
   /*background: rgb(38,189,207);*/
   /*background: rgb(128,201,210);*/
 }
 
+.home {
+  text-decoration: none;
+}
+
 .hashtag-title {
   text-decoration: none;
-   z-index: 1;
-   background-color: #EFEFEF;
-   position: fixed;
-   top:0; left:0;
-   width: 100%;
+  z-index: 1;
+  background-color: #EFEFEF;
+  position: fixed;
+  top:0; left:0;
+  width: 100%;
  }
 
  .hashtag-title:hover {
