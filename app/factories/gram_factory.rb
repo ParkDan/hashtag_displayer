@@ -8,6 +8,8 @@ class GramFactory
         return if text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)
       end
 
+      return if text && text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)
+
       unless gram["images"].nil?
         unless gram["images"]["standard_resolution"].nil?
             media_url = gram["images"]["standard_resolution"]["url"]
