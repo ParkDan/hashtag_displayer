@@ -6,7 +6,7 @@ describe 'home' do
   let(:media_image) {"https://pbs.twimg.com/media/BoqqU1wIMAAr_zO.jpg"}
 
   it 'should display single tweets details' do
-    sleep 5.2
+    sleep 15.2
     visit '/'
 
     page.should have_content("Thee Namaste Nerdz. ##{ENV["HASHTAG"]}")
@@ -23,9 +23,9 @@ describe 'home' do
     page.should have_content('@bullcityrecords')
     page.should have_content('Fri Sep 21 7:40 PM')
 
-    
+
     update_tweets_in_db
-    
+
     sleep(30.seconds)
 
     page.should have_content("Thee Namaste Nerdz. ##{ENV["HASHTAG"]}")
@@ -34,7 +34,7 @@ describe 'home' do
   end
 
   it 'should not have several swear words' do
-    sleep 5.2
+    sleep 15.2
     stub_request(:get, "https://api.twitter.com/1.1/search/tweets.json?q=%23#{ENV["HASHTAG"]}").
       with(headers: {"Authorization"=>/Bearer .+/}).
       to_return( {:status => 200, :body => SampleTweetResponses.tweets_with_censored_words.to_json, :headers => {'content-type' => 'application/json'} })

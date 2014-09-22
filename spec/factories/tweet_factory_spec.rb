@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TweetFactory do
 
   let(:response) { SampleTweetResponses.tweet_response }
-  
+
   it 'should make tweets from twitter response' do
 
     test_tweets = [
@@ -21,10 +21,9 @@ describe TweetFactory do
         profile_image_url: "http://a0.twimg.com/profile_images/2219333930/Froggystyle_normal.png"
       )
     ]
-    
+
 
     factory_tweets = TweetFactory.make_tweets(response)
-
     expect(Tweet.all).to eq(test_tweets)
     expect(Tweet.all.reverse).to_not eq(test_tweets)
   end
@@ -53,7 +52,7 @@ describe TweetFactory do
     expect(Tweet.all.reverse).to_not eq(test_tweets)
   end
 
-  it "should not add tweets with censored words" do 
+  it "should not add tweets with censored words" do
     response = SampleTweetResponses.tweets_with_censored_words
 
     TweetFactory.make_tweets(response)

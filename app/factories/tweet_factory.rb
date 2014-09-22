@@ -2,7 +2,6 @@ class TweetFactory
 
   def self.make_tweets(parsed_response)
     parsed_response["statuses"].each do |tweet|
-
       text = tweet["text"]
 
       return if text && text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)
