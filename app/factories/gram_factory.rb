@@ -1,10 +1,11 @@
+require 'pry'
 class GramFactory
 
   def self.make_grams(parsed_response)
     parsed_response["data"].each do |gram|
-
       unless gram["caption"].nil?
         text = gram["caption"]["text"]
+        return if text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)
       end
 
       unless gram["images"].nil?
@@ -17,16 +18,14 @@ class GramFactory
       profile_image_url = gram["user"]["profile_picture"]
       created_at = DateTime.strptime(gram["created_time"], "%s")
 
-      unless text && text.match(/.*(#{ENV["CENSORED_WORDS"]}).*/i)
-        begin
-          Gram.create!(text: text,
-            screen_name: screen_name,
-            media_url: media_url,
-            profile_image_url: profile_image_url,
-            created_at: created_at
-            )
-        rescue
-        end
+      begin
+        Gram.create!(text: text,
+          screen_name: screen_name,
+          media_url: media_url,
+          profile_image_url: profile_image_url,
+          created_at: created_at
+          )
+      rescue
       end
     end
   Gram.order(created_at: :desc).first
