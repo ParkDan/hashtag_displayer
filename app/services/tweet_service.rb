@@ -8,10 +8,10 @@ class TweetService
   end
 
   def get_tweets_by_hashtag(hashtag)
-    if (Time.now - @last_update > 5)
+    if (Time.now - @last_update > 15)
       p '*' * 80
-      p @last_update 
-      response = HTTParty.get("https://api.twitter.com/1.1/search/tweets.json?q=%23#{hashtag}", 
+      p @last_update
+      response = HTTParty.get("https://api.twitter.com/1.1/search/tweets.json?q=%23#{hashtag}",
       :headers => { "Authorization" => "Bearer #{bearer_token}",
         "User-Agent" => "#NAAwayDay Feed v1.0"})
       TweetFactory.make_tweets(response.parsed_response)
@@ -25,9 +25,9 @@ class TweetService
 
   def bearer_token
     authorization_key = Base64.encode64(ENV["TWITTER_BEARER_CREDENTIALS"]).gsub("\n","")
-    
+
     resp = HTTParty.post('https://api.twitter.com/oauth2/token',
-      :headers => { 
+      :headers => {
         "Authorization" => "Basic #{authorization_key}",
         "User-Agent" => "Hashtag Displayer Feed v1.0",
         "Content-Type" => "application/x-www-form-urlencoded;charset=UTF-8"
