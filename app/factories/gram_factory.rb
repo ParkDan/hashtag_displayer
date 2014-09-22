@@ -20,6 +20,7 @@ class GramFactory
       profile_image_url = gram["user"]["profile_picture"]
       created_at = DateTime.strptime(gram["created_time"], "%s")
 
+
       begin
         Gram.create!(text: text,
           screen_name: screen_name,
