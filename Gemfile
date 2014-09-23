@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 group :test do
-  gem 'rspec-rails', '~> 2.0' 
+  gem 'rspec-rails', '~> 2.0'
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'capybara'
@@ -42,6 +42,7 @@ gem 'httparty'
 
 group :production do
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 gem 'pry'
