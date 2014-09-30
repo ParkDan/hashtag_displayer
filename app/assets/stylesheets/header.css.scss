@@ -1,0 +1,185 @@
+.nav {
+  background-color: #212121;
+  width: 100%;
+  min-height: 50px;
+  padding: 15px 0px !important;
+  text-align: right;
+
+  li {
+    vertical-align: middle;
+    margin: 0;
+    display: inline-block;
+    padding-top: 11px;
+    padding-bottom: 11px;
+
+    &.active a {
+      color: #FA7900;
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-style: normal;
+      font-size: 16px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      padding: 0 1em;
+      line-height: 1em;
+      text-transform: uppercase;
+    }
+
+    .header, .donate {
+      font-size: 12px;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-weight: 300;
+      font-style: normal;
+      line-height: 1em;
+      color: rgba(255,255,255,.9);
+    }
+
+    a:hover, a:focus {
+      color: #FA7900
+    }
+
+    a.donate {
+      color: black;
+      background-color: white;
+      letter-spacing: 2px;
+      padding: 1em 1.5em !important;
+      border-radius: 300px;
+      font-weight: 500;
+      margin-right: 10px;
+    }
+
+     a.donate:hover {
+      background-color: #ebebeb;
+    }
+
+  }
+}
+
+// Smaller menu when on small screen
+// All padding and margin are in em, so they will scale as well
+@media (min-width : 900px) {
+  .menu {
+    font-size: 1.2em;
+  }
+}
+
+.menu {
+  background: #eee;
+
+  ul {
+    transition: max-height .25s linear;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+  }
+  li {
+    // visibility transition is on li because multiple transition selectors is not well supported
+    transition: visibility .25s linear;
+    display: inline-block;
+  }
+}
+
+@media (max-width : 1000px) {
+  .menu {
+    ul {
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    li {
+      visibility: hidden;
+      display: block;
+      padding: 0.5em 0.6em;
+      border: none;
+    }
+
+    .navbar-handle {
+      display: block;
+    }
+  }
+
+  #navbar-checkbox:checked + .menu {
+    ul {
+      max-height: 300px;
+      position:relative;
+      z-index: 21;
+      padding: 10px;
+    }
+
+    li {
+      margin-right: 50px;
+      visibility: visible;
+    }
+    .navbar-handle {
+      &, &:after, &:before {
+        border-color: #aaa;
+      }
+    }
+  }
+}
+
+.navbar-checkbox {
+    display: none;
+}
+
+.navbar-handle {
+    $height: 45px; // just a reference to compute em values on the fly
+    display: none;
+    cursor: pointer;
+    position: relative;
+    font-size: $height;
+    padding: .5em 0;
+    height: 0;
+    width: 1em * 75px / $height;
+    border-top: (1em * 6px / $height) solid;
+
+    &:before, &:after {
+        position: absolute;
+        left: 0;
+        right: 0;
+        content: ' ';
+        border-top: (1em * 6px / $height) solid;
+    }
+
+    &:before {
+        top: 1em * 17px / $height;
+    }
+
+    &:after {
+        top: 1em * 40px / $height;
+    }
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .navbar-handle {
+    position: absolute;
+    font-size: 1.2em;
+    top: 0.7em;
+    right: 12px;
+    z-index: 23;
+  }
+}
+
+a.home {
+  padding: .5em;
+  vertical-align: middle;
+  float: left;
+  text-align: left;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover, a:focus {
+  color: #FA7900
+}
