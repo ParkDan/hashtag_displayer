@@ -5,35 +5,46 @@ body {
   background-color: #EFEFEF;
 }
 
-body, #container {
-  background-image: image-url("background1.png");
+body {
+  margin-top: 65px;
+}
+
+#posts-list
+{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: -1.875em;
+    width: 100%;
+    margin-left: 2%;
 }
 
 h1 {
   color: #4386DB;
   text-align: center;
-  font-size: 48px;
-  font-weight: 700;
+  letter-spacing: .5px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 2;
+  margin: 0;
 }
 
 a {
-  color: #fa7900;
-  font-weight: 900;
-  font-size: 72px;
-  text-decoration: none;
-  text-align: center;
-}
-
-a:hover {
-  color: #01288D;
-  font-weight: 900;
+  color: rgb(26,115,186);
+  box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
+  -webkit-box-shadow: 0 3px 13px 0 rgba(2, 3, 3, 0.16);
+  opacity: .97;
 }
 
 a#hashtag-anchor {
-  display: block;
-  position: relative;
-  top: -250px;
-  visibility: hidden;
+ display: block;
+ position: relative;
+ top: -250px;
+ visibility: hidden;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 .tweet-container {
@@ -41,7 +52,14 @@ a#hashtag-anchor {
   width: 30%;
   min-width: 320px;
   text-align: center;
-  padding: 20px 10px;
+  width: 92%;
+  float: left;
+  padding: 1.5% .75%;
+  margin: 5px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+
 }
 
 .tweet-picture img {
@@ -49,7 +67,7 @@ a#hashtag-anchor {
 }
 
 .tweet-container section {
-  margin: 20px 0px;
+    margin: 20px 0 0 0;
 }
 
 .tweet-text {
@@ -73,6 +91,10 @@ a#hashtag-anchor {
 .tweet-created-at {
   text-align: right;
   font-size: .9em;
+}
+
+.tweet-created-at i {
+  margin-right: 5px;
 }
 
 .footer {
@@ -107,8 +129,9 @@ a#hashtag-anchor {
   /*background: rgb(128,201,210);*/
 }
 
-.home {
-  text-decoration: none;
+
+#last_page_requested{
+  display:none;
 }
 
 .hashtag-title {
@@ -124,5 +147,47 @@ a#hashtag-anchor {
   background-color: #F6F6F6;
  }
 
- .hidden{
- }
+@media ( min-width: 768px )
+{
+    h1 {
+        margin: 10px 0 10px 0;
+    }
+
+    body {
+        margin-top: 85px;
+    }
+    .tweet-container
+    {
+        width: 45.876%;
+        margin: 5px;
+    }
+    #posts-list {
+     padding-left: 0;
+    }
+}
+
+@media ( min-width: 992px )
+{
+
+    h1 {
+        margin: 15px 0 15px 0;
+    }
+
+    body {
+        margin-top: 95px;
+    }
+    #posts-list
+    {
+        padding-left: 0;
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: -1.875em;
+    }
+
+    .tweet-container {
+        text-align: center;
+        width: 30%;
+        float: left;
+        margin: 5px;
+    }
+}

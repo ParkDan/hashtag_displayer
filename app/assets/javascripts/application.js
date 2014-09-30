@@ -10,19 +10,22 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require shared
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require imagesloaded.pkgd
 //= require_tree .
 
 $(document).on("ready", function(){
-  var container = document.querySelector('#container');
-  var msnry = new Masonry(container);
+  var postsList = document.querySelector('#posts-list');
   // layout Masonry again after all images have loaded
-  imagesLoaded( container, function() {
-    msnry.layout();
-  });
+      var msnry = new Masonry(postsList);
+      imagesLoaded( postsList, function() {
+          msnry.layout();
+      });
 
+  setUpScroll();
 
   window.setInterval(function(){
     $.ajax({
@@ -31,58 +34,22 @@ $(document).on("ready", function(){
       contentType: "application/json; charset=utf-8",
       ifModified: true,
       dataType: "json",
-      success: function(data, status){
-        console.log(data);
-        console.log(status);
+      success: function(response, status){
         if(status != "notmodified") {
-          $("#container").empty();
-          var bgColor = 0;
-          for (var i = 0; i < data.length; i++){
-            bgColor += 1;
-            var obj = data[i];
-            var tweet = new Tweet(obj.text, obj.screen_name, obj.created_at_formatted, obj.profile_image_url, obj.media_url);
-            render(tweet).addClass("background-color-"+bgColor);
-            if(bgColor == 4) { bgColor = 0 }
-          }
-            var container = document.querySelector('#container');
-            var msnry = new Masonry(container);
-            imagesLoaded( container, function() {
-                msnry.layout();
-            });
-        }          
+          var newPosts = create_post_content(response);
+          $('#posts-list').prepend(newPosts);
+          layOutMasonry();
+        }
       }
     });
-  }, 2000);
-
+  }, 5000);
 });
 
-function Tweet(text, screen_name, created_at, profile_image_url, media_url) {
-  return {
-    text: text,
-    screen_name: screen_name,
-    created_at: created_at,
-    profile_image_url: profile_image_url,
-    media_url: media_url
-  };
-}
+var setUpScroll = function () {$('#up').on('click', function(e){
+    e.preventDefault();
+    var target= $('#hashtag-anchor');
+    $('html, body').stop().animate({
+        scrollTop: target.offset().top
+    }, 750);
+})};
 
-function render(tweet) {
-  var container = $("#container")
-  container.append("<div class='tweet-container'></div>")
-  var tweetContainer = container.find(".tweet-container").last()
-
-  tweetContainer.append("<section class='tweet-text'></section>");
-  tweetContainer.find(".tweet-text").text(tweet.text);
-
-  tweetContainer.append("<section class='tweet-username'></section>");
-  tweetContainer.find(".tweet-username").html("<img src='" + tweet.profile_image_url + "' class='avatar' /> @" + tweet.screen_name);  
-
-  tweetContainer.append("<section class='tweet-picture'></section>");
-  if (tweet.media_url){
-    tweetContainer.find(".tweet-picture").html("<img src='" + tweet.media_url + "' />");  
-  }
-
-  tweetContainer.append("<section class='tweet-created-at'></section>");
-  tweetContainer.find(".tweet-created-at").text(tweet.created_at);
-  return tweetContainer;
-}
