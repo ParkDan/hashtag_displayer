@@ -25,6 +25,8 @@ $(document).on("ready", function(){
           msnry.layout();
       });
 
+  replaceInitiallyLoadedTimestamps();
+
   setUpScroll();
 
   window.setInterval(function(){
@@ -52,4 +54,3 @@ var setUpScroll = function () {$('#up').on('click', function(e){
         scrollTop: target.offset().top
     }, 750);
 })};
-

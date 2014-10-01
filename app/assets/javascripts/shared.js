@@ -3,10 +3,10 @@ var renderPost = function (post, bgColor) {
   var postContainer = $(document.createElement("div")).addClass('post-container item')
 
   postContainer.append("<section class='post-id'></section>");
-  postContainer.find(".post-id").text(unescapeHtml(post.id));
+  postContainer.find(".post-id").html((post.id));
 
   postContainer.append("<section class='post-text'></section>");
-  postContainer.find(".post-text").text(unescapeHtml(post.text));
+  postContainer.find(".post-text").html((post.text));
 
   postContainer.append("<section class='post-username'></section>");
   postContainer.find(".post-username").html("<img src='" + post.profile_image_url + "' class='avatar' /> @" + post.screen_name);  
@@ -16,14 +16,11 @@ var renderPost = function (post, bgColor) {
     postContainer.find(".post-picture").html("<img src='" + post.media_url + "' />");  
   }
 
+  var formattedDate = formatDateToLocalTimezone(new Date(post.formatted_time_of_post));
 
   postContainer.addClass("background-color-"+bgColor);
-  postContainer.append("<section class='post-created-at'><i class='fa fa-2x fa-"+post.source+"'></i>"+post.formatted_time_of_post+"</section>");
+  postContainer.append("<section class='post-created-at'><i class='fa fa-2x fa-"+post.source+"'></i>" + formattedDate  +"</section>");
   return postContainer;
-}
-
-function unescapeHtml(safe) {
-    return $('<div />').html(safe).text();
 }
 
 var create_post_content = function(response) {
@@ -49,5 +46,4 @@ var layOutMasonry = function () {
   imagesLoaded( masonryList, function() {
     msnry.layout();
   });
-
 }
