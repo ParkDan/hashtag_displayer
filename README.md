@@ -17,13 +17,14 @@ Environment Variables
 Currently the application expects the following variables in the environment:
 -	HASHTAG
 -	CENSORED_WORDS
+-	CENSORED_USERS
 -	TWITTER_BEARER_CREDENTIALS
 - 	INSTAGRAM_CLIENT_ID
 
 `Hashtag` should be set to the text of the hashtag excluding the initial '#'. So if you wanted all of the posts with the "#peace" on Twitter, you set: 
 	HASHTAG=peace
 
-To prevent from storing tweets with certain words set the environment variable `CENSORED_WORDS` to the words you dont want to include in the .env file. For example, to censor tweets that contain the word, "question", add the following line in the .env file:
+To prevent from storing posts with certain words set the environment variable `CENSORED_WORDS` to the words you dont want to include in the .env file. For example, to censor posts that contain the word, "question", add the following line in the .env file:
 
 	CENSORED_WORDS=questions
 
@@ -31,6 +32,18 @@ If you want censor multiple words, simply delimit them with "|", like so
 
 	CENSORED_WORDS=questions|answers|censored
 
+To prevent from storing posts from certain users set the environment variable `CENSORED_USERS` to the users you dont want to include in the .env file. For example, to censor posts by the author, "badGuy", add the following line in the .env file:
+
+	CENSORED_USERS=badGuy
+
+If you want to censor multiple users, simply delimit them with "|", like so
+
+	CENSORED_USERS=badGuy|UglyDog
+
+If you don't want to censor users or words, simply don't put a value after the equal for `CENSORED_USERS` or `CENSORED_WORDS`, like so:
+	
+	CENSORED_USERS=
+	CENSORED_WORDS=
 
 `Twitter Bearer Credentials` should be set to the Twitter Key followed by a colon and the Twitter secret, like so:
 
@@ -80,4 +93,4 @@ The testing framework used is Rspec and Capybara. To run them:
 
 What's in the future?
 ---------------------
-We're working on supporting multiple hashtags
+We're working on supporting facebook and videos

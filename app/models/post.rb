@@ -9,11 +9,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.get_new_posts(hashtag)
-    if APIService.instance.pull_posts(hashtag)
-      order(time_of_post: :desc).select { |post| is_post_from_last_pull?(post) }
-    else
-      nil
-    end
+    order(time_of_post: :desc).select { |post| is_post_from_last_pull?(post) } if APIService.instance.pull_posts(hashtag)
   end
 
   def ==(post)
@@ -37,13 +33,14 @@ class Post < ActiveRecord::Base
     where(source: "instagram")
   end
 
-  def self.newest_fifty_posts(hashtag=false)
-    all(hashtag).order(time_of_post: :desc).limit(50)
+  def self.sorted_posts(hashtag=false, limit=nil)
+    limit ? all(hashtag).order(time_of_post: :desc).limit(limit) : all(hashtag).order(time_of_post: :desc)
   end
 
-  def self.next_fifty_posts(last_post_id)
+  def self.next_posts(last_post_id, limit=nil)
     last_post = find(last_post_id)
-    where("time_of_post < ?", last_post.time_of_post).order(time_of_post: :desc).limit(50)
+    return where("time_of_post < ?", last_post.time_of_post).order(time_of_post: :desc).limit(limit) if limit
+    where("time_of_post < ?", last_post.time_of_post).order(time_of_post: :desc)
   end
 
 
