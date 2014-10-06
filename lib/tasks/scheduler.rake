@@ -7,3 +7,14 @@ task :update_feed => :environment do
   # NewsFeed.update
   puts "done."
 end
+
+namespace :db do
+	task :clear_half_db => :environment do
+	  Rails.application.eager_load!
+	  puts "Clearing old posts..."
+	  old_posts = Post.order(time_of_post: :desc).first(Post.all.count/2)
+	  old_posts.each(&:destroy)
+	  puts "done."
+	end
+end
+
