@@ -1,4 +1,49 @@
 module SampleTweetResponses
+  def self.tweet_response_with_youtube
+    @@tweet_response_with_youtube = {
+        "statuses" => [
+          {
+            "entities" => {
+              "urls" => [
+              {
+                "url" => "http://t.co/npprk1guZR",
+                "expanded_url" => "http://youtu.be/lmnop",
+                "display_url" => "youtu.be/lmnop"
+              },
+              {
+                "url" => "http://t.co/udp1Px9fLM",
+                "expanded_url" => "http://youtube.com/abcde",
+                "display_url" => "youtube.com/abcde"
+              }],
+            },
+            "text" => "watch these videos! http://t.co/npprk1guZR http://t.co/udp1Px9fLM",
+          }
+        ]
+      }
+  end
+
+  def self.tweet_response_with_image
+    @@tweet_response_with_image = {
+        "statuses" => [
+          {
+            "entities" => {
+              "media" => [{
+                "indices"=>[71, 93], 
+                "media_url"=>"http://pbs.twimg.com/media/BoqqU1wIMAAr_zO.jpg", 
+                "media_url_https"=>"https://pbs.twimg.com/media/BoqqU1wIMAAr_zO.jpg", 
+                "url"=>"http://t.co/8EO3BWutLc", 
+                "display_url"=>"pic.twitter.com/8EO3BWutLc", 
+                "expanded_url"=>"http://twitter.com/scumbling/status/471376390852317184/photo/1", 
+                "type"=>"photo", 
+              }],
+              "urls" => [ ], "hashtags" => [ ]
+            },
+            "text" => "here's a photo about something! http://t.co/8EO3BWutLc",
+          }
+        ]
+      }
+  end
+
   def self.tweets_with_censored_words 
   @@tweets_with_censored_words = {
       "statuses" => [
@@ -233,6 +278,7 @@ module SampleTweetResponses
   ############
     }
   end
+
   def self.second_tweet_response
     @@second_tweet_response = {
       "statuses" => [
@@ -567,6 +613,7 @@ module SampleTweetResponses
       }
     }
   end
+
   def self.tweet_response
     @@tweet_response = {
         "statuses" => [

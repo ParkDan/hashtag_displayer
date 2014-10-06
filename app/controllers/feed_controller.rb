@@ -1,6 +1,8 @@
 class FeedController < ApplicationController
 
   include PostHelper
+  include YoutubeVideoHelper
+  include VineVideoHelper
   include ActionView::Helpers::UrlHelper
 
   def index
@@ -13,9 +15,7 @@ class FeedController < ApplicationController
       format.json do
         @posts = Post.get_new_posts(ENV["HASHTAG"])
         if @posts
-          @posts.each do |post|
-             post.text = add_post_links post
-          end
+          add_links_to_posts(@posts)
           render json: @posts
         else
           render json: @posts, status: :not_modified
@@ -26,11 +26,15 @@ class FeedController < ApplicationController
 
   def get_next_page
     @posts = Post.next_posts(params[:last_post_id], 100)
-    if @posts.empty?
-      render json: @posts, status: :not_modified
-    else
-      @posts.each { |post| post.text = add_post_links post }
-      render json: @posts
+    add_links_to_posts(@posts)
+    @posts.empty? ? (render json: @posts, status: :not_modified) : (render json: @posts)
+  end
+
+  private
+
+  def add_links_to_posts(posts)
+    posts.each do |post|
+      post.text = add_post_links post
     end
   end
 end
