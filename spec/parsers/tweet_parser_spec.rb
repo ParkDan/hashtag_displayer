@@ -10,7 +10,8 @@ describe TweetParser do
           screen_name: "bullcityrecords",
           time_of_post: "Fri Sep 21 23:40:54 +0000 2012",
           profile_image_url: "http://a0.twimg.com/profile_images/447958234/Lichtenstein_normal.jpg",
-          media_url: "https://pbs.twimg.com/media/BoqqU1wIMAAr_zO.jpg"}
+          media_url: "https://pbs.twimg.com/media/BoqqU1wIMAAr_zO.jpg",
+          post_id: "249292149810667520" }
 
       result = TweetParser.parse(response)
 
@@ -38,10 +39,10 @@ describe TweetParser do
     end
   end
 
-  describe 'replace links with youtube' do
+  describe 'replace links with short urls' do
     it "should " do 
       response = SampleTweetResponses.tweet_response_with_youtube["statuses"].first
-      result = TweetParser.replace_links_with_youtube(response)
+      result = TweetParser.replace_short_links(response)
       expect(result).to_not include("http://t.co/udp1Px9fLM")
       expect(result).to_not include("http://t.co/npprk1guZR")
       expect(result).to include("http://youtu.be/lmnop")

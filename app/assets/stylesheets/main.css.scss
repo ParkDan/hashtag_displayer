@@ -29,8 +29,13 @@ h1 {
 }
 
 a {
-  color: rgb(26,115,186);
-  opacity: .97;
+  color: #EDADAD;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 a#hashtag-anchor {
@@ -45,11 +50,14 @@ a#hashtag-anchor {
     transition: all .2s ease-in-out;
 }
 
+.post-text > iframe {
+  margin-top: 20px;
+}
+
 .youtube-video {
   height: 200px;
   margin: 0.5em;
 }
-
 
 .vine-video {
   display: block;
@@ -72,7 +80,7 @@ a#hashtag-anchor {
 }
 
 .post-picture img {
-  width: 80%;
+  width: 60%;
 }
 
 .post-container section {
@@ -81,11 +89,12 @@ a#hashtag-anchor {
 
 .post-text {
   font-style: italic;
-  font-size: 2em;
+  font-size: 22px;
 }
 
 .post-username {
   font-weight: bold;
+  font-size: 14px;
 }
 
 .post-id {
@@ -93,8 +102,8 @@ a#hashtag-anchor {
 }
 
 .avatar{
- width: 50px;
- height: 50px;
+ width: 40px;
+ height: 40px;
  background-size: cover;
  border-radius: 25px;
  -webkit-border-radius: 25px;
@@ -102,8 +111,8 @@ a#hashtag-anchor {
  }
 
 .post-created-at {
-  text-align: right;
-  font-size: .9em;
+  font-size: 11px;
+  display: inline-block;
 }
 
 .post-created-at i {
@@ -115,6 +124,10 @@ a#hashtag-anchor {
   color: rgb(38,189,207);
   margin-top: 30px;
   text-align: center;
+}
+
+.footer a {
+  color: rgba(80, 136, 251, 1);
 }
 
 .background-color-1 {
@@ -162,6 +175,7 @@ a#hashtag-anchor {
 
 @media ( min-width: 768px )
 {
+
     h1 {
         margin: 10px 0 10px 0;
     }
